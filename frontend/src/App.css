@@ -1,184 +1,409 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+:root {
+  --game-blue: #4db8ff;
+  --game-blue-light: #8dd8ff;
+  --game-dark: #17191a;
 }
 
-.hero {
-  position: relative;
+/* ----BASE----- */
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
-#center {
+body {
+  font-family: Arial, sans-serif;
+  background: var(--game-dark);
+  color: var(--game-blue-light);
+  overflow: hidden;
+}
+
+/* ----MAIN GAME----- */
+
+
+.game {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
+  align-items: center;
 
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  padding: 25px 40px 20px;
+
+  text-align: center;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
+/* ----TITLE----- */
 
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
 
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
+.game h1 {
+  margin: 0 0 20px;
 
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  color: var(--game-blue-light);
+
+  flex-shrink: 0;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
+/* ----GAME AREA----- */
 
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+.game-area {
   width: 100%;
+  flex: 1;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  min-height: 0;
+}
+
+/* ----BUTONS----- */
+
+
+.game-buttons {
+  justify-self: center;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.reset-button {
+  padding: 10px 20px;
+
+  font-size: 16px;
+
+  border: 2px solid var(--game-blue);
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  background: #17191a;
+  color: var(--game-blue-light);
+}
+
+.reset-button:hover {
+  transform: translateY(-2px);
+}
+
+/* ----SCORE----- */
+
+.game-area .score {
+  justify-self: center;
+  margin: 0;
+}
+
+.score {
+  margin: 0;
+}
+
+.score h2 {
+  margin: 0 0 15px;
+
+  color: var(--game-blue-light);
+}
+
+.score-board div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.score-board span {
+  font-size: 14px;
+}
+
+.score-board strong {
+  font-size: 28px;
+
+  color: var(--game-blue-light);
+
+}
+
+/* ----CHOICE BUTTON----- */
+
+.choice-button {
+  width: 130px;
+  height: 100px;
+
+  box-sizing: border-box;
+
+  border: 2px solid var(--game-blue);
+  border-radius: 12px;
+
+  background: #17191a;
+  color: var(--game-blue-light);
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+}
+
+.choice-button:hover {
+  transform: translateY(-3px);
+
+}
+
+.choice-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.emoji {
+  font-size: 40px;
+}
+
+
+/* ----TRIANGLE----- */
+
+.triangle {
+  position: relative;
+
+  width: 350px;
+  height: 300px;
+
+  justify-self: center;
+
+  margin: 0;
+
+  flex-shrink: 0;
+}
+
+.triangle-content {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+}
+
+.triangle-lines {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  left: 0;
+  top: 0;
+}
+
+.triangle-lines polygon {
+  fill: none;
+
+  stroke: var(--game-blue);
+  stroke-width: 3;
+
+  filter:
+    drop-shadow(0 0 5px rgba(77, 184, 255, 0.6));
+}
+
+/* ----TRIANGLE BUTTON POSITIONS----- */
+
+.triangle-top {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.triangle-bottom-left {
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+}
+
+.triangle-bottom-right {
+  position: absolute;
+
+  bottom: 0;
+  right: 0;
+}
+
+/* ----FINAL CHOICES----- */
+
+.final-choices {
+  position: absolute;
+
+  width: 400px;
+  height: 120px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.final-choices::before {
+  content: "";
+
+  position: absolute;
+
+  left: 65px;
+  right: 65px;
+
+  top: 50%;
+
+  height: 3px;
+
+  background: var(--game-blue);
+
+  transform: translateY(-50%);
+}
+
+.final-choices .choice-button {
+  position: relative;
+
+  z-index: 1;
+}
+
+.versus {
+  position: relative;
+
+  z-index: 2;
+
+  background: var(--game-dark);
+
+  color: var(--game-blue-light);
+
+  padding: 8px 12px;
+
+  font-weight: bold;
+
+}
+
+/* ----ANIMATION----- */
+
+.triangle.spinning {
+  animation:
+    spin 1.5s ease-in-out forwards;
+}
+
+.triangle.spinning .triangle-content {
+  animation:
+    triangleFade 1.5s ease-in-out forwards;
+}
+
+.triangle.spinning .final-choices {
+  animation:
+    finalFade 1.5s ease-in-out forwards;
+}
+
+.triangle.show-final .triangle-content {
+  opacity: 0;
+}
+
+.triangle.show-final .final-choices {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ----GAME RESULTS----- */
+
+.game-result {
+  margin: 10px auto 0;
+
+  padding: 12px;
+
+  max-width: 350px;
+
+  color: var(--game-blue-light);
+
+  flex-shrink: 0;
+}
+
+.game-result p {
+  margin: 5px 0;
+}
+
+.game-result h2 {
+  margin-top: 20px;
+
+  color: var(--game-blue-light);
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg) scale(1);
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  50% {
+    transform: rotate(360deg) scale(0);
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  100% {
+    transform: rotate(720deg) scale(1);
+  }
+}
+
+@keyframes triangleFade {
+  0% {
+    opacity: 1;
+  }
+
+  49.9% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes finalFade {
+  0% {
+    opacity: 0;
+  }
+
+  49.9% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  50.1% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
