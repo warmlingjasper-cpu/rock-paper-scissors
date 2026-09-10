@@ -1,13 +1,17 @@
 import pedra from "../assets/pedra.png"
 import papel from "../assets/papel.png"
 import tesoura from "../assets/tesoura.png"
+import lizard from "../assets/lizard.png"
+import spock from "../assets/spock.png"
 
 function ChoiceButton({ choice, onChoice }) {
 
   const images = {
     rock: pedra,
     paper: papel,
-    scissors: tesoura
+    scissors: tesoura,
+    lizard: lizard,
+    spock: spock
   }
 
   return (

@@ -3,8 +3,13 @@ import ChoiceButton from './components/ChoiceButton'
 import GameResult from './components/GameResult'
 import Score from './components/Score'
 import './App.css'
+import pedra from "./assets/pedra.png"
+import papel from "./assets/papel.png"
+import tesoura from "./assets/tesoura.png"
+import lizard from "./assets/lizard.png"
+import spock from "./assets/spock.png"
 
-const choices = ["rock", "paper", "scissors"]
+const choices = ["rock", "paper", "scissors", "lizard", "spock"]
 
 function getComputerChoice() {
   const randomIndex = Math.floor(Math.random() * choices.length)
@@ -19,8 +24,15 @@ function determineWinner(player, computer) {
 
   if (
     (player === "rock" && computer === "scissors") ||
+    (player === "rock" && computer === "lizard") ||
     (player === "paper" && computer === "rock") ||
-    (player === "scissors" && computer === "paper")
+    (player === "paper" && computer === "spock") ||
+    (player === "scissors" && computer === "paper") ||
+    (player === "scissors" && computer === "lizard") ||
+    (player === "lizard" && computer === "paper") ||
+    (player === "lizard" && computer === "spock") ||
+    (player === "spock" && computer === "rock") ||
+    (player === "spock" && computer === "scissors")
   ) {
     return "win"
   }
@@ -30,6 +42,7 @@ function determineWinner(player, computer) {
 
 function App() {
 
+  const [showRules, setShowRules] = useState(false)
   const [playerChoice, setPlayerChoice] = useState(null)
   const [computerChoice, setComputerChoice] = useState(null)
   const [result, setResult] = useState(null)
@@ -105,17 +118,25 @@ function App() {
 
   return (
     <div className="game">
-      <h1>Rock Paper Scissors</h1>
+      <h2>Rock Paper Scissors Lizard Spock</h2>
       <div className="game-area">
         <div className="game-buttons">
 
-          <button className="reset-button" onClick={playAgain}>
+          <button className="reset-button play-again-button" onClick={playAgain}>
             Play Again
           </button>
-
-          <button className="reset-button" onClick={resetGame}>
-            Reset Game
-          </button>
+          <div className="bottom-buttons">
+            <button className="reset-button" onClick={resetGame}>
+              Reset Game
+            </button>
+            
+            <button
+              className="rules-button" 
+              onClick={() => setShowRules(true)}
+              >
+                Rules
+            </button>
+          </div>
         </div>
 
         <div
@@ -126,18 +147,26 @@ function App() {
           <div className="triangle-content">
 
             <svg className="triangle-lines" viewBox="0 0 400 350">
-              <polygon points="200,20 40,310 360,310" />
+              <polygon points="200,20 380,140 310,330 90,330 20,140" />
             </svg>
 
             <div className="triangle-top">
               <ChoiceButton choice="rock" onChoice={handlePlayerChoice} />
             </div>
 
-            <div className="triangle-bottom-left">
+            <div className="triangle-upper-right">
               <ChoiceButton choice="scissors" onChoice={handlePlayerChoice} />
             </div>
 
             <div className="triangle-bottom-right">
+              <ChoiceButton choice="lizard" onChoice={handlePlayerChoice} />
+            </div>
+
+            <div className="triangle-bottom-left">
+              <ChoiceButton choice="spock" onChoice={handlePlayerChoice} />
+            </div>
+
+            <div className="triangle-upper-left">
               <ChoiceButton choice="paper" onChoice={handlePlayerChoice} />
             </div>
 
@@ -170,6 +199,37 @@ function App() {
         computerChoice={computerChoice}
         result={result}
       />
+
+      {showRules && (
+        <div className="rules-overlay">
+          <div className="rules-modal">
+            <button
+              className="close-button"
+              onClick={() => setShowRules(false)}
+            >
+              ×
+            </button>
+
+            <h2>How to play</h2>
+
+              <p>
+                <img src={pedra} alt="Pedra" /> Rock crushes <img src={tesoura} alt="Tesoura" /> Scissors and <img src={lizard} alt="Lizard" /> Lizard.
+                <br />
+
+                <img src={papel} alt="Papel" /> Paper covers <img src={pedra} alt="Pedra" /> Rock and disproves <img src={spock} alt="Spock" /> Spock.
+                <br />
+
+                <img src={tesoura} alt="Tesoura" /> Scissors cuts <img src={papel} alt="Papel" /> Paper and decapitates <img src={lizard} alt="Lizard" /> Lizard.
+                <br />
+
+                <img src={lizard} alt="Lizard" /> Lizard eats <img src={papel} alt="Papel" /> Paper and poisons <img src={spock} alt="Spock" /> Spock.
+                <br />
+
+                <img src={spock} alt="Spock" /> Spock vaporizes <img src={pedra} alt="Pedra" /> Rock and smashes <img src={tesoura} alt="Tesoura" /> Scissors.
+              </p>
+          </div>
+        </div>
+      )}
 
     </div>
   )

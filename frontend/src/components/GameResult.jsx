@@ -7,7 +7,9 @@ function GameResult({ playerChoice, computerChoice, result }) {
   const emojis = {
     rock: "Rock",
     paper: "Paper",
-    scissors: "Scissors"
+    scissors: "Scissors",
+    lizard: "Lizard",
+    spock: "Spock"
   }
 
   const messages = {
@@ -19,7 +21,7 @@ function GameResult({ playerChoice, computerChoice, result }) {
   return (
     <div className="game-result">
       <p>You picked: {emojis[playerChoice]}</p>
-      <p>The house picked: {computerChoice}</p>
+      <p>The house picked: {emojis[computerChoice]}</p>
 
       <h2>{messages[result]}</h2>
     </div>
