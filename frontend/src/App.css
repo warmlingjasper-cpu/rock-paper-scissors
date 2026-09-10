@@ -519,3 +519,53 @@ body {
   object-fit: contain;
   vertical-align: middle;
 }
+
+/* ----- CLASSIC MODE ----- */
+
+.triangle.classic .triangle-top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.triangle.classic .triangle-upper-left {
+  top: 220px;
+  left: 20px;
+}
+
+.triangle.classic .triangle-upper-right {
+  top: 220px;
+  right: 20px;
+}
+
+.triangle.classic .triangle-lines {
+  transform: scale(0.95);
+}
+
+.mode-switch {
+  display: flex;
+  padding: 4px;
+  border: 2px solid var(--game-blue);
+  border-radius: 8px;
+  background: #17191a;
+}
+
+.mode-switch button {
+  padding: 7px 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--game-blue-light);
+  transition: 0.2s ease;
+}
+
+.mode-switch button:hover {
+  transform: translateY(-2px);
+}
+
+.mode-switch button.active {
+  background: var(--game-blue);
+  color: #17191a;
+}

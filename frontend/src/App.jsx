@@ -9,9 +9,17 @@ import tesoura from "./assets/tesoura.png"
 import lizard from "./assets/lizard.png"
 import spock from "./assets/spock.png"
 
-const choices = ["rock", "paper", "scissors", "lizard", "spock"]
+const classicChoices = ["rock", "paper", "scissors"]
 
-function getComputerChoice() {
+const advancedChoices = [
+  "rock",
+  "paper",
+  "scissors",
+  "lizard",
+  "spock"
+]
+
+function getComputerChoice(choices) {
   const randomIndex = Math.floor(Math.random() * choices.length)
 
   return choices[randomIndex]
@@ -54,10 +62,16 @@ function App() {
     draws: 0
   })
 
+  const [gameMode, setGameMode] = useState("classic")
+
+  const choices = gameMode === "classic"
+  ? classicChoices
+  : advancedChoices
+
   function handlePlayerChoice(choice) {
     setIsSpinning(true)
 
-    const computer = getComputerChoice()
+    const computer = getComputerChoice(choices)
 
     setPlayerChoice(choice)
     setComputerChoice(computer)
@@ -118,7 +132,28 @@ function App() {
 
   return (
     <div className="game">
-      <h2>Rock Paper Scissors Lizard Spock</h2>
+      <div className="mode-switch">
+        <button
+          className={gameMode === "classic" ? "active" : ""}
+          onClick={() => setGameMode("classic")}
+        >
+          Classic
+        </button>
+
+        <button
+          className={gameMode === "advanced" ? "active" : ""}
+          onClick={() => setGameMode("advanced")}
+        >
+          Advanced
+        </button>
+      </div>
+      <br />
+      <h2>
+        {gameMode === "classic"
+          ? "Rock Paper Scissors"
+          : "Rock Paper Scissors Lizard Spock"}
+      </h2>
+
       <div className="game-area">
         <div className="game-buttons">
 
@@ -140,14 +175,18 @@ function App() {
         </div>
 
         <div
-          className={`triangle ${isSpinning ? "spinning" : ""
+          className={`triangle ${gameMode} ${isSpinning ? "spinning" : ""
             } ${showFinalChoices ? "show-final" : ""}`}
         >
 
           <div className="triangle-content">
 
             <svg className="triangle-lines" viewBox="0 0 400 350">
-              <polygon points="200,20 380,140 310,330 90,330 20,140" />
+              {gameMode === "classic" ? (
+                <polygon points="200,20 380,330 20,330" />
+              ) : (
+                <polygon points="200,20 380,140 310,330 90,330 20,140" />
+              )}
             </svg>
 
             <div className="triangle-top">
@@ -158,13 +197,17 @@ function App() {
               <ChoiceButton choice="scissors" onChoice={handlePlayerChoice} />
             </div>
 
-            <div className="triangle-bottom-right">
-              <ChoiceButton choice="lizard" onChoice={handlePlayerChoice} />
-            </div>
+            {gameMode === "advanced" && (
+              <>
+                <div className="triangle-bottom-right">
+                  <ChoiceButton choice="lizard" onChoice={handlePlayerChoice} />
+                </div>
 
-            <div className="triangle-bottom-left">
-              <ChoiceButton choice="spock" onChoice={handlePlayerChoice} />
-            </div>
+                <div className="triangle-bottom-left">
+                  <ChoiceButton choice="spock" onChoice={handlePlayerChoice} />
+                </div>
+              </>
+            )}
 
             <div className="triangle-upper-left">
               <ChoiceButton choice="paper" onChoice={handlePlayerChoice} />
@@ -213,20 +256,34 @@ function App() {
             <h2>How to play</h2>
 
               <p>
-                <img src={pedra} alt="Pedra" /> Rock crushes <img src={tesoura} alt="Tesoura" /> Scissors and <img src={lizard} alt="Lizard" /> Lizard.
-                <br />
+                {gameMode === "classic" ? (
+                  <>
+                    <img src={pedra} alt="Pedra" /> Rock crushes <img src={tesoura} alt="Tesoura" /> Scissors.
+                    <br />
+                    <img src={papel} alt="Pedra" /> Paper covers <img src={pedra} alt="Pedra" /> Rock.
+                    <br />
+                    <img src={tesoura} alt="Tesoura" /> Scissors cut <img src={papel} alt="Papel" /> Paper.
+                    <br />
+                  </>
+                ) : (
+                  
+                  <>
+                    <img src={pedra} alt="Pedra" /> Rock crushes <img src={tesoura} alt="Tesoura" /> Scissors and <img src={lizard} alt="Lizard" /> Lizard.
+                    <br />
 
-                <img src={papel} alt="Papel" /> Paper covers <img src={pedra} alt="Pedra" /> Rock and disproves <img src={spock} alt="Spock" /> Spock.
-                <br />
+                    <img src={papel} alt="Papel" /> Paper covers <img src={pedra} alt="Pedra" /> Rock and disproves <img src={spock} alt="Spock" /> Spock.
+                    <br />
 
-                <img src={tesoura} alt="Tesoura" /> Scissors cuts <img src={papel} alt="Papel" /> Paper and decapitates <img src={lizard} alt="Lizard" /> Lizard.
-                <br />
+                    <img src={tesoura} alt="Tesoura" /> Scissors cuts <img src={papel} alt="Papel" /> Paper and decapitates <img src={lizard} alt="Lizard" /> Lizard.
+                    <br />
 
-                <img src={lizard} alt="Lizard" /> Lizard eats <img src={papel} alt="Papel" /> Paper and poisons <img src={spock} alt="Spock" /> Spock.
-                <br />
+                    <img src={lizard} alt="Lizard" /> Lizard eats <img src={papel} alt="Papel" /> Paper and poisons <img src={spock} alt="Spock" /> Spock.
+                    <br />
 
-                <img src={spock} alt="Spock" /> Spock vaporizes <img src={pedra} alt="Pedra" /> Rock and smashes <img src={tesoura} alt="Tesoura" /> Scissors.
-              </p>
+                    <img src={spock} alt="Spock" /> Spock vaporizes <img src={pedra} alt="Pedra" /> Rock and smashes <img src={tesoura} alt="Tesoura" /> Scissors.
+                      </>
+                    )}
+                </p>
           </div>
         </div>
       )}
