@@ -582,17 +582,65 @@ body {
 
 @media (max-width: 600px) {
 
-  .triangle-content {
-    margin: 0 auto;
+  .game {
+    padding: 20px 10px;
+  }
 
+  .game-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .triangle {
     width: 320px;
-    height: 300px;
+    height: 280px;
+    margin: 0 auto;
   }
-  .triangle-top,
-  .triangle-upper-right,
-  .triangle-bottom-right,
-  .triangle-bottom-left,
+
+  .triangle-content {
+    width: 100%;
+    height: 100%;
+  }
+
+  .choice-button {
+    width: 85px;
+    height: 70px;
+  }
+
+  .choice-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Pentagon */
+
+  .triangle-top {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .triangle-upper-right {
+    top: 95px;
+    right: 0;
+  }
+
+  .triangle-bottom-right {
+    bottom: 0;
+    right: 30px;
+  }
+
+  .triangle-bottom-left {
+    bottom: 0;
+    left: 30px;
+  }
+
   .triangle-upper-left {
-    transform: scale(0.75);
+    top: 95px;
+    left: 0;
   }
+
 }
