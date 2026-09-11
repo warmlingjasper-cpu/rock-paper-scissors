@@ -670,15 +670,19 @@ body {
   }
 
   .play-again-button {
-    transform: translateY(78px);
+    position: relative;
+    top: 78px;
+    transform: none;
   }
 
   .play-again-button:hover {
-    transform: translateY(78px);
+    transform: none;
   }
 
   .final-choices {
     top: 70%;
+    width: 90%;
+    max-width: 400px;
   }
 
 }
