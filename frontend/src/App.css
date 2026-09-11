@@ -591,8 +591,8 @@ body {
   }
 
   .game-result {
-  position: relative;
-  z-index: 10;
+    position: relative;
+    z-index: 10;
   }
 
   .game-area {
@@ -671,6 +671,14 @@ body {
 
   .play-again-button {
     transform: translateY(78px);
+  }
+
+  .play-again-button:hover {
+    transform: translateY(78px);
+  }
+
+  .final-choices {
+    top: 70%;
   }
 
 }
