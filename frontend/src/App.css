@@ -586,12 +586,30 @@ body {
     padding: 20px 10px;
   }
 
+  .game-result {
+  position: relative;
+  z-index: 10;
+  }
+
   .game-area {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
+  }
+
+  .game-buttons {
+  position: absolute;
+  left: 0;
+  z-index: 5;
+  }
+
+  .game-area .score {
+    position: absolute;
+    right: 0;
+    z-index: 5;
   }
 
   .triangle {
