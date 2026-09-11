@@ -259,8 +259,8 @@ body {
 }
 
 .triangle-top {
-  top: 0;
-  left: 50%;
+  top: 0px;
+  left: 35%;
   transform: translateX(-50%);
 }
 
@@ -530,12 +530,12 @@ body {
 
 .triangle.classic .triangle-upper-left {
   top: 220px;
-  left: 20px;
+  left: 5px;
 }
 
 .triangle.classic .triangle-upper-right {
   top: 220px;
-  right: 20px;
+  right: 5px;
 }
 
 .triangle.classic .triangle-lines {
@@ -568,4 +568,31 @@ body {
 .mode-switch button.active {
   background: var(--game-blue);
   color: #17191a;
+}
+
+/* ----- MEDIA ----- */
+
+@media (min-width: 601px) {
+
+  .triangle-top {
+    left: 50%;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .triangle-content {
+    margin: 0 auto;
+
+    width: 320px;
+    height: 300px;
+  }
+  .triangle-top,
+  .triangle-upper-right,
+  .triangle-bottom-right,
+  .triangle-bottom-left,
+  .triangle-upper-left {
+    transform: scale(0.75);
+  }
 }
