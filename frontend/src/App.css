@@ -677,12 +677,18 @@ body {
 
   .play-again-button:hover {
     transform: none;
+    opacity: 0.8;
   }
 
   .final-choices {
     top: 70%;
-    width: 90%;
+    width: 95%;
     max-width: 400px;
+  }
+
+  .final-choices::before {
+    left: 45px;
+    right: 45px;
   }
 
 }
