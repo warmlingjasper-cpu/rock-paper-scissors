@@ -603,7 +603,7 @@ body {
   .game-buttons {
     position: absolute;
     left: 0;
-    top: 40%;
+    top: 2%;
     transform: translateY(-50%);
     z-index: 5;
   }
@@ -611,7 +611,7 @@ body {
   .game-area .score {
     position: absolute;
     right: 0;
-    top: 40%;
+    top: 15%;
     transform: translateY(-50%);
     z-index: 5;
   }
@@ -666,3 +666,7 @@ body {
   }
 
 }
+
+  .play-again-button {
+    transform: translateY(78px);
+  }
