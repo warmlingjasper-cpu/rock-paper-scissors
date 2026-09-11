@@ -593,6 +593,7 @@ body {
   .game-result {
     position: relative;
     z-index: 10;
+    transform: translateY(-10px);
   }
 
   .game-area {
